@@ -47,3 +47,45 @@ html,body
 {
   background-color: #3b3f46;
 }
+
+#ResultItems
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+
+}
+
+/* Custom CSS for modal styling */
+.modal-dialog {
+  max-width: 75vw !important;
+  margin: 5vh auto !important;
+}
+
+.modal-content {
+  width: 75vw !important;
+  height: 70vh !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+.modal-body {
+  padding: 0 !important;
+}
+
+.modal-iframe-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 75vw !important;
+  height: 70vh !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.modal-iframe-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}

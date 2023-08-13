@@ -77,6 +77,13 @@ export default function SearchForm() {
      
     
       }
+
+      const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+          // Call your search function here
+          beginSearch(event);
+        }
+      };
     return (
         <div className="bg-dark text-white">
           <h1 className="my-2">Beat Searcher</h1>
@@ -89,7 +96,7 @@ export default function SearchForm() {
                     </Col>
                     <Col className="col-10 m-0 p-0">
                            <InputGroup>
-                                <Form.Control  id="SEARCH_TERM"  name="SEARCH_TERM" value={formValues.SEARCH_TERM||""} onChange={handleFormChange}  />
+                                <Form.Control  id="SEARCH_TERM"  name="SEARCH_TERM" value={formValues.SEARCH_TERM||""} onChange={handleFormChange} onKeyUp={handleKeyPress} />
                                 <Button variant="outline-primary" type="button" onClick={beginSearch}><SearchIcon/></Button>
                             </InputGroup>
                     </Col>
@@ -122,7 +129,7 @@ export default function SearchForm() {
         <div id="ResultItems">
         {filteredresults &&
                          filteredresults.map((resultItem) => (
-                            <ResultItem data={resultItem}/>
+                            <ResultItem data={resultItem} key={resultItem.id}/>
 
                         ))}
 

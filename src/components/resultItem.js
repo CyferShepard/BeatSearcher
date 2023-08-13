@@ -11,6 +11,7 @@ export default function ResultItem(props) {
       const openModal = () => {
         setIsModalOpen(true);
         console.log("open");
+        console.log(`https://allpoland.github.io/ArcViewer/?id=${data.id}`);
       };
     
       const closeModal = () => {
@@ -18,22 +19,14 @@ export default function ResultItem(props) {
       }
 
 
-
-    return (
-        <Row className="search-item p-3 m-3 rounded">
-
-            
-            <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
-              <button onClick={closeModal}>Close Modal</button>
-              <iframe src={`https://allpoland.github.io/ArcViewer/?id=${data.id}`} title="Modal Content" width="100%" height="100%" />
-            </Modal>
-                
-            <Col className="col-auto">
-             <img alt="Cover" src={data.versions[0].coverURL} class="cover" width="100" height="100"/>
-            </Col>
-
-            <Col>
-                <Row>
+      return (
+        <div className="search-item p-3 m-2 rounded row">
+          <Col className="col-auto">
+            <img alt="Cover" src={data.versions[0].coverURL} className="cover" width="100" height="100" />
+          </Col>
+          
+          <Col>
+          <Row>
                     {data.name}
                 </Row>
                 <Row>
@@ -48,18 +41,25 @@ export default function ResultItem(props) {
                      ))
                     }
                 </Row>
-            </Col>
-
-            <Col className="col-auto">
-                <Row className="mb-2">
-                    <Button className="btn-secondary" onClick={openModal}>Open Modal</Button>
-                </Row>
-
-                <Row className="mb-2">
+          </Col>
+      
+          <Col className="col-auto">
+            <Row className="mb-2">
+              <Button className="btn-secondary" onClick={openModal}>View</Button>
+            </Row>
+            <Row className="mb-2">
                     <Button className="btn-secondary" onClick={() => window.open(`beatsaver://${data.id}`, '_blank')}>OneClick Install</Button>
                 </Row>
-            </Col>
-  
-        </Row>
+          </Col>
+      
+          <Modal show={isModalOpen} onHide={closeModal} centered>
+      <Modal.Body className="p-0">
+        <div className="modal-iframe-container">
+          <iframe src={`https://allpoland.github.io/ArcViewer/?id=${data.id}`} title="Modal Content" allow="fullscreen"/>
+        </div>
+      </Modal.Body>
+    </Modal>
+        </div>
       );
+      
 }
